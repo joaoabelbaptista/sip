@@ -1,0 +1,150 @@
+"Name","Unique_ID__c","Entity_Name__c","Entity_Type__c","Task_Step__r.Unique_ID__c"
+"ENT00000174","VRS_VFGE_COL_REPORT_EXTRACT_SOURCE","SELECT Footprint_Service_Detail__c.Name,
+    Footprint_Service_Detail__c.Footprint_Service__r.HPLMN_Operator_Tadig__c,
+    Footprint_Service_Detail__c.Footprint_Service__r.Open_Date_Formula__c,
+    Footprint_Service_Detail__c.Footprint_Service__r.SO_Type__c,
+    Footprint_Service_Detail__c.Footprint_Service__r.VPLMN_Operator_Tadig__c,
+    Footprint_Service_Detail__c.Footprint_Service__r.Financial_Direction__c,
+    Footprint_Service_Detail__c.Footprint_Service__r.Footprint__r.HPLMN_HUB_TADIG_Code__c,
+    Footprint_Service_Detail__c.Footprint_Service__r.Footprint__r.VPLMN_HUB_TADIG_Code__c
+FROM
+    Footprint_Service_Detail__c
+WHERE
+((((Footprint_Service_Detail__c.Footprint_Service__r.Footprint__r.HPLMN__r.Force_Financial_Report__c = True AND Footprint_Service_Detail__c.Footprint_Service__r.Status__c in ( 'Pending','Progressing','Selected','Open','Migrate' )) OR (Footprint_Service_Detail__c.Footprint_Service__r.Footprint__r.HPLMN__r.Force_Financial_Report__c = False AND Footprint_Service_Detail__c.Footprint_Service__r.Status__c in('Open','Migrate','Progressing') AND Footprint_Service_Detail__c.Footprint_Service__r.Product__c in ('GSM','GPRS') )) AND Footprint_Service_Detail__c.Footprint_Service__r.Financial_Direction__c in ('Bilateral','Unilateral Outbound') AND Footprint_Service_Detail__c.Footprint_Service__r.Open_Date_Formula__c  != NULL ) AND ((Footprint_Service_Detail__c.Footprint_Service__r.HPLMN_Operator_Tadig__c not in ('IND20','IND21','IND22','IND23','IND24','INDT1','INDT3','INDT4','INDT5','INDT6','INDT7','INDT8','INDT9','INDTB','INDTG','INDTH','INDTK','INDTO','INDTP','INDTR') or Footprint_Service_Detail__c.Footprint_Service__r.VPLMN_Operator_Tadig__c != 'NLDLT' ) and ( Footprint_Service_Detail__c.Footprint_Service__r.VPLMN_Operator_Tadig__c not in ('IND20','IND21','IND22','IND23','IND24','INDT1','INDT3','INDT4','INDT5','INDT6','INDT7','INDT8','INDT9','INDTB','INDTG','INDTH','INDTK','INDTO','INDTP','INDTR') or Footprint_Service_Detail__c.Footprint_Service__r.HPLMN_Operator_Tadig__c != 'NLDLT' ))) AND Footprint_Service_Detail__c.Footprint_Service__r.Has_Test_Account__c = False","Source","VRS_VFGE_COL_REPORT_STEP_1"
+"ENT00000175","VRS_VFGE_COL_REPORT_LOAD_TARGET","COL_report.csv","Target","VRS_VFGE_COL_REPORT_STEP_2"
+"ENT00000176","VRS_VFGE_IOT_SYNC_2ND_PARTICIPANT_EXTRACT_SOURCE","SELECT Id FROM E2E_Sync_2nd_participant__c","Source","VRS_VFGE_IOT_SYNC_2ND_PARTICIPANT_STEP_1"
+"ENT00000177","VRS_VFGE_IOT_SYNC_2ND_PARTICIPANT_LOAD_TARGET","del_2nd_participant.csv","Target","VRS_VFGE_IOT_SYNC_2ND_PARTICIPANT_STEP_2"
+"ENT00000178","VRS_VFGE_IOT_SYNC_1ST_PARTICIPANT_EXTRACT_SOURCE","SELECT Id FROM E2E_Sync_1st_participant__c","Source","VRS_VFGE_IOT_SYNC_1ST_PARTICIPANT_STEP_1"
+"ENT00000179","VRS_VFGE_IOT_SYNC_1ST_PARTICIPANT_LOAD_TARGET","del_1st_participant.csv","Target","VRS_VFGE_IOT_SYNC_1ST_PARTICIPANT_STEP_2"
+"ENT00000180","VRS_VFGE_IOT_SYNC_DEAL_EXTRACT_SOURCE","SELECT Id FROM E2E_Sync_Deal__c WHERE Force_Ammend_Creation__c != TRUE OR Sync_Status__c != 'Error'","Source","VRS_VFGE_IOT_SYNC_DEAL_STEP_1"
+"ENT00000181","VRS_VFGE_IOT_SYNC_DEAL_LOAD_TARGET","del_deal.csv","Target","VRS_VFGE_IOT_SYNC_DEAL_STEP_2"
+"ENT00000182","VRS_VFGE_IOT_SYNC_PERIOD_EXTRACT_SOURCE","SELECT Id FROM E2E_Sync_Period__c","Source","VRS_VFGE_IOT_SYNC_PERIOD_STEP_1"
+"ENT00000183","VRS_VFGE_IOT_SYNC_PERIOD_LOAD_TARGET","del_period.csv","Target","VRS_VFGE_IOT_SYNC_PERIOD_STEP_2"
+"ENT00000184","VRS_VFGE_IOT_SYNC_HISTORICAL_EXTRACT_SOURCE","SELECT Id, Error_Message__c FROM E2E_Sync_Historical__c WHERE Status__c NOT IN ('Finished','Finished in Error')","Source","VRS_VFGE_IOT_SYNC_HISTORICAL_STEP_1"
+"ENT00000185","VRS_VFGE_IOT_SYNC_HISTORICAL_LOAD_TARGET","del_historical.csv","Target","VRS_VFGE_IOT_SYNC_HISTORICAL_STEP_2"
+"ENT00000186","VRS_VFGE_IOT_SYNC_HISTORY_CLOSE_OPEN_ONES_EXTRACT_S","del_historical.csv","Source","VRS_VFGE_IOT_SYNC_HISTORY_CLOSE_OPEN_ONES_STEP_1"
+"ENT00000187","VRS_VFGE_IOT_SYNC_HISTORY_CLOSE_OPEN_ONES_LOAD_T","E2E_Sync_Historical__c","Target","VRS_VFGE_IOT_SYNC_HISTORY_CLOSE_OPEN_ONES_STEP_2"
+"ENT00000188","VRS_VFGE_IOT_SYNC_HISTORY_START_NEW_PROCESS_EXTRACT_S","IOT_Sync_new_process.csv","Source","VRS_VFGE_IOT_SYNC_HISTORY_START_NEW_PROCESS_STEP_1"
+"ENT00000189","VRS_VFGE_IOT_SYNC_HISTORY_START_NEW_PROCESS_LOAD_T","E2E_Sync_Historical__c","Target","VRS_VFGE_IOT_SYNC_HISTORY_START_NEW_PROCESS_STEP_3"
+"ENT00000190","VRS_VFGE_IOT_SYNC_HISTORY_START_NEW_PROCESS_FILTER","filter","Target","VRS_VFGE_IOT_SYNC_HISTORY_START_NEW_PROCESS_STEP_2"
+"ENT00000191","VRS_VFGE_IOT_SYNC_GET_CURRENT_PROCESS_ID_LOAD_T","cfg_e2e_sync_historical.csv","Target","VRS_VFGE_IOT_SYNC_GET_CURRENT_PROCESS_ID_STEP_2"
+"ENT00000192","VRS_VFGE_IOT_SYNC_GET_CURRENT_PROCESS_ID_EXTRACT_S","SELECT Id, Error_Message__c, Data_Uploaded_to_SFDC__c, End_Upload_Data_Date__c FROM E2E_Sync_Historical__c WHERE Status__c IN ('Importing CSVs')","Source","VRS_VFGE_IOT_SYNC_GET_CURRENT_PROCESS_ID_STEP_1"
+"ENT00000193","VRS_VFGE_IOT_SYNC_HISTORY_IMPORT_CSV_FILES_EXTRACT_SOU","cfg_e2e_sync_historical.csv","Source","VRS_VFGE_IOT_SYNC_HISTORY_IMPORT_CSV_FILES_STEP_1"
+"ENT00000194","VRS_VFGE_IOT_SYNC_HISTORY_IMPORT_CSV_FILES_LOAD_TARGET","E2E_Sync_Historical__c","Target","VRS_VFGE_IOT_SYNC_HISTORY_IMPORT_CSV_FILES_STEP_2"
+"ENT00000195","VRS_VFGE_IOT_SYNC_DELETE_OLD_DATA_LOAD_TARGET","IOT_SYNCH.drop_old_date","Target","VRS_VFGE_IOT_SYNC_DELETE_OLD_DATA_STEP_1"
+"ENT00000196","VRS_VFGE_IOT_SYNC_IMPORT_FLAT_DEAL_EXTRACT_SOURCE","IOT_Sync_deal.csv","Source","VRS_VFGE_IOT_SYNC_IMPORT_FLAT_DEAL_STEP_1"
+"ENT00000197","VRS_VFGE_IOT_SYNC_IMPORT_FLAT_DEAL_LOAD_TARGET","E2E_SYNC_DEAL__C","Target","VRS_VFGE_IOT_SYNC_IMPORT_FLAT_DEAL_STEP_2"
+"ENT00000198","VRS_VFGE_IOT_SYNC_IMPORT_FLAT_DISCOUNT_PERIODS_EXTRACT_SOURCE","IOT_Sync_period.csv","Source","VRS_VFGE_IOT_SYNC_IMPORT_FLAT_DISCOUNT_PERIODS_STEP_1"
+"ENT00000199","VRS_VFGE_IOT_SYNC_IMPORT_FLAT_DISCOUNT_PERIODS_LOAD_TARGET","BASE_CLARITY_DISCOUNT_PERIOD","Target","VRS_VFGE_IOT_SYNC_IMPORT_FLAT_DISCOUNT_PERIODS_STEP_2"
+"ENT00000200","VRS_VFGE_OT_SYNC_IMPORT_FLAT_VF_OPCO_EXTRACT_SOURCE","IOT_Sync_vf_opcos.csv","Source","VRS_VFGE_IOT_SYNC_IMPORT_FLAT_VF_OPCO_STEP_1"
+"ENT00000201","VRS_VFGE_OT_SYNC_IMPORT_FLAT_VF_OPCO_LOAD_TARGET","BASE_CLARITY_VF_OPCO","Target","VRS_VFGE_IOT_SYNC_IMPORT_FLAT_VF_OPCO_STEP_2"
+"ENT00000202","VRS_VFGE_IOT_SYNC_IMPORT_FLAT_3RD_PARTY_EXTRACT_SOURCE","IOT_Sync_snd_party.csv","Source","VRS_VFGE_IOT_SYNC_IMPORT_FLAT_3RD_PARTY_STEP_1"
+"ENT00000203","VRS_VFGE_IOT_SYNC_IMPORT_FLAT_3RD_PARTY_LOAD_TARGET","BASE_CLARITY_3RD_PARTY","Target","VRS_VFGE_IOT_SYNC_IMPORT_FLAT_3RD_PARTY_STEP_2"
+"ENT00000204","VRS_VFGE_IOT_SYNC_HISTORY_UPLOADING_DATA_LOAD_SOURCE","cfg_e2e_sync_historical.csv","Source","VRS_VFGE_IOT_SYNC_HISTORY_UPLOADING_DATA_STEP_1"
+"ENT00000205","VRS_VFGE_IOT_SYNC_HISTORY_UPLOADING_DATA_LOAD_TARGET","E2E_Sync_Historical__c","Target","VRS_VFGE_IOT_SYNC_HISTORY_UPLOADING_DATA_STEP_2"
+"ENT00000206","VRS_VFGE_IOT_SYNC_POPULATE_DEAL_LOAD_TARGET","IOT_SYNCH.populate_deal","Target","VRS_VFGE_IOT_SYNC_POPULATE_DEAL"
+"ENT00000207","VRS_VFGE_IOT_SYNC_3RD_PARTY_DELETE_EXTRACT_SOURCE","del_2nd_participant.csv","Source","VRS_VFGE_IOT_SYNC_3RD_PARTY_DELETE_STEP_1"
+"ENT00000208","VRS_VFGE_IOT_SYNC_3RD_PARTY_DELETE_LOAD_TARGET","E2E_Sync_2nd_participant__c","Target","VRS_VFGE_IOT_SYNC_3RD_PARTY_DELETE_STEP_2"
+"ENT00000209","VRS_VFGE_IOT_SYNC_VF_OPCO_DELETE_EXTRACT_SOURCE","del_1st_participant.csv","Source","VRS_VFGE_IOT_SYNC_VF_OPCO_DELETE_STEP_1"
+"ENT00000210","VRS_VFGE_IOT_SYNC_VF_OPCO_DELETE_LOAD_TARGET","E2E_Sync_1st_participant__c","Target","VRS_VFGE_IOT_SYNC_VF_OPCO_DELETE_STEP_2"
+"ENT00000211","VRS_VFGE_IOT_SYNC_PERIOD_DELETE_EXTRACT_SOURCE","del_period.csv","Source","VRS_VFGE_IOT_SYNC_PERIOD_DELETE_STEP_1"
+"ENT00000212","VRS_VFGE_IOT_SYNC_PERIOD_DELETE_LOAD_TARGET","E2E_Sync_Period__c","Target","VRS_VFGE_IOT_SYNC_PERIOD_DELETE_STEP_2"
+"ENT00000213","VRS_VFGE_IOT_SYNC_DEAL_DELETE_EXTRACT_SOURCE","del_deal.csv","Source","VRS_VFGE_IOT_SYNC_DEAL_DELETE_STEP_1"
+"ENT00000214","VRS_VFGE_IOT_SYNC_DEAL_DELETE_LOAD_TARGET","E2E_Sync_Deal__c","Target","VRS_VFGE_IOT_SYNC_DEAL_DELETE_STEP_2"
+"ENT00000215","VRS_VFGE_GLL_REPORT_EXTRACT_SOURCE","SELECT
+    Active_Contract_Agreement_to_Deliver__c,
+    Effective_Contract_Type__c,
+    HSF_Trigger__c,
+    Name,
+    Pay_Currency__c,
+    Receive_Currency__c,
+    TADIG_Code__c,
+    VRS_Start_Date__c,
+    DCH__r.TADIG_Code__c,
+    FCH_Invoice_Creation__r.TADIG_Code__c,
+    FCH_Reconciliation__r.TADIG_Code__c,
+    FCH_Settlement__r.TADIG_Code__c
+FROM Account WHERE
+Record_Type__c = 'Operator' AND ((Status__c = 'Onboarded' OR Status__c = 'Contract Completed') OR Contract_Status__c = 'Contract Completed') AND VRS_Start_Date__c != NULL AND Test_Account__c = false","Source","VRS_VFGE_GLL_REPORT_STEP_1"
+"ENT00000216","VRS_VFGA_GLL_REPORT_LOAD_TARGET","GLL_report.csv","Target","VRS_VFGA_GLL_REPORT_STEP_2"
+"ENT00000217","VRS_VFGE_IOT_SYNC_DEAL_INSERT_EXTRACT_SOURCE","SELECT
+    NAME,
+    EFFECTIVE_DATE__C,
+    CONTRACT_CATEGORY__C,
+    CONTRACT_NAME__C,
+    DEAL_STATUS__C,
+    CONTRACT_TYPE__C,
+    CURRENT_MILESTONE__C,
+    END_DATE__C,
+    INITIAL_CONTACT_COMMENTS__C,
+    LAST_UPDATED_DATE,
+    SND_PART_PARTICIPANT,
+    PARENT_FA_SRC__C,
+    CONTRACT_TYPE_SRC__C,
+    NEGOTIATION_TEAM__C,
+    CONTRACT_MANAGER__C,
+    CAS_COMMENTS__C,
+    LEGAL_SRC__C,
+    FINANCE_SRC__C,
+    TAX_SRC__C,
+    CAS_DATE__C,
+    PLANNED_NEGOT_START_DATE__C,
+    PLANNED_NEGOT_END_DATE__C,
+    ACTUAL_NEGOT_START_DATE__C,
+    ACTUAL_NEGOT_END_DATE__C,
+    CONTACT_PERSON_SRC,
+    TELEFONE_NUMBER_SRC,
+    EMAIL_ADDRESS_SRC,
+    FRAUD_SRC__C,
+    AUTO_RENEW,
+    VALIDATION_STATUS
+FROM
+    E2E_SYNC_DEAL__C
+WHERE
+    NAME IS NOT NULL","Source","VRS_VFGE_IOT_SYNC_DEAL_INSERT_STEP_1"
+"ENT00000218","VRS_VFGE_IOT_SYNC_DEAL_INSERT_LOAD_TARGET","E2E_Sync_Deal__c","Target","VRS_VFGE_IOT_SYNC_DEAL_INSERT_STEP_2"
+"ENT00000219","VRS_VFGE_IOT_SYNC_PERIOD_INSERT_EXTRACT_SOURCE","SELECT PERIOD_INDEX, DEAL_INDEX, PERIOD_FROM, PERIOD_TO, LAST_UPDATED_DATE FROM BASE_CLARITY_DISCOUNT_PERIOD","Source","VRS_VFGE_IOT_SYNC_PERIOD_INSERT_STEP_1"
+"ENT00000220","VRS_VFGE_IOT_SYNC_PERIOD_INSERT_LOAD_TARGET","E2E_Sync_Period__c","Target","VRS_VFGE_IOT_SYNC_PERIOD_INSERT_STEP_2"
+"ENT00000221","VRS_VFGE_IOT_SYNC_1ST_PARTICIPANT_INSERT_EXTRACT_SOURCE","SELECT DEAL_INDEX, PERIOD_INDEX, TADIG, TARGET, TARGET_START, TARGET_FINISH, LAST_UPDATED_DATE, IS_PARTICIPANT, IS_SIGNER FROM BASE_CLARITY_VF_OPCO","Source","VRS_VFGE_IOT_SYNC_1ST_PARTICIPANT_INSERT_STEP_1"
+"ENT00000222","VRS_VFGE_IOT_SYNC_1ST_PARTICIPANT_INSERT_LOAD_TARGET","E2E_Sync_1st_participant__c","Target","VRS_VFGE_IOT_SYNC_1ST_PARTICIPANT_INSERT_STEP_2"
+"ENT00000223","VRS_VFGE_IOT_SYNC_2ND_PARTICIPANT_INSERT_EXTRACT_SOURCE","SELECT DEAL_INDEX, PERIOD_INDEX, TADIG, TARGET, TARGET_START, TARGET_FINISH, LAST_UPDATED_DATE, IS_PARTICIPANT, IS_SIGNER FROM BASE_CLARITY_3RD_PARTY","Source","VRS_VFGE_IOT_SYNC_2ND_PARTICIPANT_INSERT_STEP_1"
+"ENT00000224","VRS_VFGE_IOT_SYNC_2ND_PARTICIPANT_INSERT_LOAD_TARGET","E2E_Sync_2nd_participant__c","Target","VRS_VFGE_IOT_SYNC_2ND_PARTICIPANT_INSERT_STEP_2"
+"ENT00000225","VRS_VFGE_IOT_SYNC_HISTORY_WAITING_SYNC_EXTRACT_SOURCE","cfg_e2e_sync_historical.csv","Source","VRS_VFGE_IOT_SYNC_HISTORY_WAITING_SYNC_STEP_1"
+"ENT00000226","VRS_VFGE_IOT_SYNC_HISTORY_WAITING_SYNC_LOAD_TARGET","E2E_Sync_Historical__c","Target","VRS_VFGE_IOT_SYNC_HISTORY_WAITING_SYNC_STEP_2"
+"ENT00000227","SYS_PURGE_SERVER_AUDIT_EXTRACT_SOURCE","SELECT Id FROM SIP_Server_Audit__c WHERE CreatedDate < THIS_WEEK ORDER BY CreatedDate DESC","Source","SYS_PURGE_SERVER_AUDIT_EXTRACT"
+"ENT00000228","SYS_PURGE_SERVER_AUDIT_LOAD_TARGET","SIP_Server_Audit__c","Target","SYS_PURGE_SERVER_AUDIT_LOAD"
+"ENT00000229","SYS_PURGE_SERVER_LOGS_EXTRACT_SOURCE",".*.log","Source","SYS_PURGE_SERVER_LOGS_EXTRACT"
+"ENT00000230","SYS_PURGE_SERVER_LOGS_FILTER_TARGET","filter","Target","SYS_PURGE_SERVER_LOGS_FILTER"
+"ENT00000231","SYS_PURGE_SERVER_LOGS_FILE_TARGET","fileParameters","Target","SYS_PURGE_SERVER_LOGS_FILE"
+"ENT00000232","VRS_VFGA_SERVICE_AVAILABILITY_FULL_EXTRACT_SOURCE","select
+Asset.Product2.Name,
+Asset.Account.TADIG_Code__c
+from Asset
+where
+Asset.Availability__c <> 'Not Available' AND
+Asset.Account.Test_Account__c = False AND
+Asset.Product2.Family = 'Service' AND
+Asset.Product2.Name <> '3G' AND
+Asset.Product2.Name <> 'CAMEL'","Source","VRS_VFGA_SERVICE_AVAILABILITY_FULL_STEP_1"
+"ENT00000233","VRS_VFGA_SERVICE_AVAILABILITY_FULL_LOAD_TARGET","service_availabilityFull.csv","Target","VRS_VFGA_SERVICE_AVAILABILITY_FULL_STEP_2"
+"ENT00000234","VRS_VFGA_HUB_CONNECTIONS_FULL_EXTRACT_SOURCE","SELECT Footprint_Service__c.Status__c, Footprint_Service__c.Product__c, Footprint_Service__c.CLL_Date__c, Footprint_Service__c.Direction__c, Footprint_Service__c.Footprint__r.HPLMN_HUB_TADIG_Code__c, Footprint_Service__c.Footprint__r.VPLMN_HUB_TADIG_Code__c FROM Footprint_Service__c  where (Footprint_Service__c.Status__c = 'Open' OR Footprint_Service__c.Status__c = 'Migrate') AND Footprint_Service__c.Product__c != '3G' AND Footprint_Service__c.Product__c != 'CAMEL' AND Footprint_Service__c.Has_Test_Account__c = false AND Footprint_Service__c.Footprint__r.Has_Test_Account__c = false","Source","VRS_VFGA_HUB_CONNECTIONS_FULL_STEP_1"
+"ENT00000236","VRS_VFGA_HUB_CONNECTIONS_FULL_LOAD_TARGET","hub_connectionsFull.csv","Target","VRS_VFGA_HUB_CONNECTIONS_FULL_STEP_2"
+"ENT00000237","VRS_VFGA_FOOTPRINT_FULL_LOAD_TARGET","footprintFull.csv","Target","VRS_VFGA_FOOTPRINT_FULL_STEP_2"
+"ENT00000238","VRS_VFGA_FOOTPRINT_FULL_EXTRACT_SOURCE","SELECT Footprint_Service__c.Product__c, Footprint_Service__c.Direction__c, Footprint_Service__c.Footprint__r.HPLMN_TADIG_Code__c, Footprint_Service__c.Footprint__r.VPLMN_TADIG_Code__c FROM Footprint_Service__c  where Footprint_Service__c.Product__c != '3G' AND Footprint_Service__c.Product__c != 'CAMEL' AND Footprint_Service__c.Has_Test_Account__c = false AND Footprint_Service__c.Footprint__r.Has_Test_Account__c = false","Source","VRS_VFGA_FOOTPRINT_FULL_STEP_1"
+"ENT00000239","VRS_VFGA_CLARITY_MIGRATIONS_BI_EXTRACT_SOURCE","SELECT Footprint_Service_Detail__c.Name,
+Footprint_Service_Detail__c.Footprint_Service__r.HPLMN_Operator_Tadig__c, Footprint_Service_Detail__c.Footprint_Service__r.VPLMN_Operator_Tadig__c,
+Footprint_Service_Detail__c.Footprint_Service__r.Open_Date_Formula__c,
+Footprint_Service_Detail__c.Footprint_Service__r.CLL_Date__c,
+Footprint_Service_Detail__c.Footprint_Service__r.Commercial_Migration_Date__c
+FROM
+    Footprint_Service_Detail__c
+WHERE
+Footprint_Service_Detail__c.Name != '3G'  AND  Footprint_Service_Detail__c.Name != 'CAMEL' AND Footprint_Service_Detail__c.Footprint_Service__r.Open_Date_Formula__c != NULL AND (Footprint_Service_Detail__c.Footprint_Service__r.Relationship_Direction__c = 'Unilateral Outbound' OR Footprint_Service_Detail__c.Footprint_Service__r.Relationship_Direction__c = 'Bilateral') AND Footprint_Service_Detail__c.Footprint_Service__r.Has_Test_Account__c = false","Source","VRS_VFGA_CLARITY_MIGRATIONS_BI_STEP_1"
+"ENT00000240","VRS_VFGA_CLARITY_MIGRATIONS_BI_LOAD_TARGET","clarity_migrations.csv","Target","VRS_VFGA_CLARITY_MIGRATIONS_BI_STEP_2"
+"ENT00000241","VFGA_IOT_STATUS_REPORT_EXTRACT_SOURCE","select E2E_Contract__c.IOT_Contract_Index__c, E2E_Contract__c.Contract_Status__c
+FROM E2E_Contract__c
+WHERE
+E2E_Contract__c.Contract_Category__c = 'IOT' AND
+E2E_Contract__c.Next__c = null AND
+E2E_Contract__c.Contract_Type__c != 'FA'","Source","VFGA_IOT_STATUS_REPORT_STEP_1"
+"ENT00000242","VFGA_IOT_STATUS_REPORT_LOAD_TARGET","IOT_report.csv","Target","VFGA_IOT_STATUS_REPORT_STEP_2"

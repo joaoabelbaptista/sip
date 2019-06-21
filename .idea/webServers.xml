@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f03162d9-d89d-42ef-9a92-68ec37ee1d57" name="CI_SIP_UAT" url="http://localhost">
+        <fileTransfer host="localhost" port="9090" rootFolder="/home/agostinhoo/emailgrabber/sip/jar" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="9090" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

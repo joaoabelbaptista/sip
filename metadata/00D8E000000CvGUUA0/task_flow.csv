@@ -1,0 +1,3 @@
+"Name","Unique_ID__c","Flow_Name__c","Schedule__r.Unique_ID__c","Description__c","Failure_Emails__c","Last_Scheduled_Date__c","Max_Retry_Count__c","Retry_If_Fail__c","Success_Emails__c","Warning_Emails__c"
+"TKF00000018","VFGE_IOT_SYNC","VFGE_IOT_Sync_COMPLETE_E2E","DAILY_AT_2200",,,,,"false",,
+"TKF00000019","SYS_PURGE_AUDIT_AND_LOGS","SYS_PURGE_AUDIT_AND_LOGS",,,"antonio.manuel.oliveira.santos@gmail.com",,,"false","antonio.manuel.oliveira.santos@gmail.com","antonio.manuel.oliveira.santos@gmail.com"

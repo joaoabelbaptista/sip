@@ -1,0 +1,11 @@
+task copyConfiguration (type: Copy)  {
+
+    println "Target environment: $environment"
+
+
+    copy {
+        from "environment.properties/$environment"
+        into "properties"
+        include "**/*"
+    }
+}

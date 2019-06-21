@@ -1,0 +1,67 @@
+<project name="sip" default="dist" basedir=".">
+	<description>
+		Build file for Salesforce Integration Platform
+	</description>
+
+	<property name="app" value="sip" />
+
+	<property name="src" location="src" />
+	<property name="build" location="build" />
+	<property name="dist" location="dist" />
+
+	<property name="javaDebug" value="true" />
+	<property name="javaDebugLevel" value="lines,vars,source" />
+
+	<target name="init">
+		<tstamp />
+		<mkdir dir="${build}" />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}" debug="${javaDebug}" debugLevel="${javaDebugLevel}">
+			<classpath>
+				<pathelement path="${java.class.path}" />
+				<fileset dir="lib">
+					<include name="**/*.jar" />
+					<include name="**/*.zip" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="dist" depends="compile" description="generate the distribution">
+		<mkdir dir="${dist}/lib" />
+		<mkdir dir="${dist}/bin" />
+		<mkdir dir="${dist}/config" />
+
+		<jar jarfile="${dist}/lib/${app}.jar" basedir="${build}" />
+		<copy todir="${dist}/lib">
+			<fileset dir="lib">
+				<include name="**/*.jar" />
+				<include name="**/*.zip" />
+			</fileset>
+		</copy>
+
+		<copy todir="${dist}/bin">
+			<fileset dir="scripts">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+		<chmod perm="u+x,o+x">
+			<fileset dir="${dist}/bin">
+			</fileset>
+		</chmod>
+
+		<copy todir="${dist}/config">
+			<fileset dir="properties">
+				<include name="**/*.properties" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="clean" description="clean up">
+		<delete dir="${build}" />
+	</target>
+</project>
+

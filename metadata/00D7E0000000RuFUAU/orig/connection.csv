@@ -1,0 +1,9 @@
+"Name","Unique_ID__c","Connection_Name__c","Connection_Type__c","Description__c","All_Or_None__c","Auto_Commit__c","Batch_Size__c","Charset__c","Date_Format__c","Custom_Date_Format__c","Directory__c","Hostname__c","Login_Server__c","Login_Timeout__c","Password__c","Port__c","Security_Token__c","Service__c","Username__c"
+"CON00000008","SALESFORCE_VRS","VRS","Salesforce",,"false","false","200.0",,,,,,"https://test.salesforce.com/services/Soap/u/22",,"327b2f39d5!!!",,"5d0wMdyEJf4NLq4xvGtb1loBJ",,"iotdatesynchronisation@vrs.com.uat"
+"CON00000009","CSV_VFGE_UTF8","VFGE_UTF8","CSV",,"false","false","200.0","UTF-8","yyyy-MM-dd HH:mm:ss",,"/home/sip/salesforce/inbox",,"https://login.salesforce.com/services/Soap/u/22",,,,,,
+"CON00000010","CSV_VFGE_TMP","VFGE_TMP","CSV",,"false","false","200.0",,,,"/home/sip/salesforce/tmp",,"https://login.salesforce.com/services/Soap/u/22",,,,,,
+"CON00000011","CSV_VFGE_INBOX","VFGE_INBOX","CSV",,"false","false","200.0",,,"yyyy-MM-dd HH:mm:ss.S","/home/sip/salesforce/inbox",,"https://login.salesforce.com/services/Soap/u/22",,,,,,
+"CON00000012","VRS_ORACLE","VRS_ORACLE","Oracle","VRS Oracle Support Database.","false","false","200.0",,,,,"127.0.0.1","https://login.salesforce.com/services/Soap/u/22",,"vrs:sip:uat","1521.0",,"STAGING","VRS_E2E_SIP_UAT"
+"CON00000013","SYS_SALESFORCE","SYS_SALESFORCE","Salesforce",,"false","false","200.0",,,,,,"https://test.salesforce.com/services/Soap/u/22",,"Adivinha-2030",,"8N7cm1cvpwQ07oCgHL51ivp9",,"antonio.santos1@vrs.com.uat"
+"CON00000014","SYS_FILESYSTEM_LOGS","SYS_FILESYSTEM_LOGS","Filesystem",,"false","false","200.0",,,,"/home/sip/log",,"https://login.salesforce.com/services/Soap/u/22",,,,,,
+"CON00000015","SYS_FILESYSTEM_ARCHIVED_LOGS","SYS_FILESYSTEM_ARCHIVED_LOGS","Filesystem",,"false","false","200.0",,,,"/home/sip/log.archive",,"https://login.salesforce.com/services/Soap/u/22",,,,,,

@@ -1,0 +1,3 @@
+"Name","Unique_ID__c","Schedule_Name__c","Schedule_Type__c","Start_Date__c","End_Date__c","Recurrence__c","Recurrence_Type__c"
+"SCH00000028","DAILY_AT_2200","Daily at 22:00","Recurrent","2016-07-08 01:00:00",,"*","Day"
+"SCH00000029","DAILY_AT_2300","Daily at 23:40","Recurrent","2016-07-08 01:00:00",,"*","Day"

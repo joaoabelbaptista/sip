@@ -1,0 +1,23 @@
+#!/bin/bash
+
+arguments=$*;
+workDir=`dirname $0`;
+configDir=${workDir}/../config;
+libDir=${workDir}/../lib;
+
+mainClass=com.vrs.sip.Server;
+
+for jarFile in `ls -1 ${libDir} | grep -e \.jar -e \.zip`; do
+	if [ "${classPath-X}" != "X" ]; then
+		classPath=${classPath}:
+	fi
+	classPath=${classPath}${libDir}/${jarFile};
+done
+
+umask 0007;
+export TZ="GMT+0";
+export LOG_TZ="Europe/London";
+
+java -classpath ${configDir}:${classPath} ${mainClass} ${arguments};
+
+

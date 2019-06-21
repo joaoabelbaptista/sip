@@ -1,0 +1,17 @@
+# SIP Crontab
+#
+#       Created: 2016-09-28, 09:19
+# Last Modified: 2016-09-28, 09:19
+#
+CRON_TZ=Europe/London
+30 14 * * * $HOME/bin/sip -task clarity_migrations_BI >/dev/null 2>&1
+# TODO: IOT Sync
+45 14 * * * $HOME/bin/sip -task COL_Report >/dev/null 2>&1
+0 15 * * * $HOME/bin/sip -task COL_Report_Validate >/dev/null 2>&1
+5 15 * * * $HOME/bin/sip -task footprint_Full >/dev/null 2>&1
+10 15 * * * $HOME/bin/sip -task GLL_Report >/dev/null 2>&1
+20 15 * * * $HOME/bin/sip -task hub_connections_Full >/dev/null 2>&1
+30 15 * * * $HOME/bin/sip -task IOT_Status_Report >/dev/null 2>&1
+49 15 * * * $HOME/bin/sip -task service_availability_Full >/dev/null 2>&1
+0 * * * * $HOME/bin/remote.get >/dev/null 2>&1
+

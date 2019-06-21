@@ -1,0 +1,3 @@
+"Name","Unique_ID__c","Flow_Name__c","Schedule__r.Unique_ID__c","Description__c","Failure_Emails__c","Last_Scheduled_Date__c","Max_Retry_Count__c","Retry_If_Fail__c","Success_Emails__c","Warning_Emails__c"
+"TKF00000002","VFGE_IOT_SYNC","VFGE_IOT_Sync_COMPLETE_E2E","DAILY_AT_2200",,,,,"false",,
+"TKF00000003","SYS_PURGE_AUDIT_AND_LOGS","SYS_PURGE_AUDIT_AND_LOGS",,,"joao.santos@stellaxius.com",,,"false","joao.santos@stellaxius.com","joao.santos@stellaxius.com"

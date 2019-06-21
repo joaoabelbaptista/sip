@@ -1,0 +1,54 @@
+
+def loadConfiguration() {
+    ext.environment = project.hasProperty('env') ? project.getProperty('env'): 'ci.sip_uat'
+    println 'Building for ' +  environment
+    project.setProperty 'environment', environment
+}
+
+loadConfiguration()
+
+apply from: 'tasks.gradle'
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'java-library-distribution'
+
+jar.baseName = 'sip'
+
+processResources.dependsOn copyConfiguration
+
+ant.importBuild('build.xml') { antTargetName ->
+    'ant.sip.' + antTargetName
+}
+
+mainClassName = 'com.vrs.sip.Server'
+
+repositories {
+    mavenCentral()
+}
+
+// This is really the important part
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'properties'
+        }
+        // add tests sources here (this project didn't have them!)
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'lib', include: '*.jar')
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "$mainClassName"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
